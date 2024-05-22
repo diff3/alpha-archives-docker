@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: containers/db/Dockerfile
+    environment:
+      MYSQL_DATABASE: root
+      MYSQL_ROOT_PASSWORD: pwd
+    container_name: db
+    hostname: db
+    tty: true
+    restart: always
+    ports:
+      - "3366:3306"
+  
+  backend: 
+    build:
+      context: .
+      dockerfile: containers/backend/Dockerfile
+    container_name: backend
+    hostname: backend
+    tty: true
+    restart: always
+    volumes:
+      - "./media:/app/Alpha-archives-website/backend/media"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - "db"
+
+  frontend: 
+    build:
+      context: .
+      dockerfile: containers/frontend/Dockerfile
+    container_name: frontend
+    hostname: frontend
+    tty: true
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "db"
+
+networks:
+  default:
+    name: alpha-core-network
