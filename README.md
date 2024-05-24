@@ -15,8 +15,8 @@ Check https://github.com/geo-tp/Alpha-archives-website to see how it's installed
 - Clone or download https://github.com/The-Alpha-Project/Alpha-Project-Archive to media/Alpha-Project-Archive. 
 
   - cd media && git clone https://github.com/The-Alpha-Project/Alpha-Project-Archive
-  
-  - If you haven't cloned the archive then docker will try to clone it and download all large videos. It's about 12G so it's a slow process.
+
+  - It's important it's to media/Alpha-Project-Archive, otherwise you need to change in the config before building.
 
 - start with docker compose up -d
 
@@ -25,6 +25,8 @@ Check https://github.com/geo-tp/Alpha-archives-website to see how it's installed
 - on first run backend will create image database from media/Alpha-Project-Archive, it will run for a while.
 
   - you can use docker compose logs -f to follow progress. ctrl-c to exit.
+
+  - Image database is not auto upteded, but you can do i manually by login into backend container. 
 
 - log into localhost:3000/login and change superuser password. it's admin:admin
 
